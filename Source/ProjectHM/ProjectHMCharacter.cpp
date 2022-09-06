@@ -3,6 +3,8 @@
 #include "ProjectHMCharacter.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Camera/CameraComponent.h"
+#include "Interactable.h"
+#include "GameplayController.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -47,6 +49,14 @@ AProjectHMCharacter::AProjectHMCharacter()
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }
 
+void AProjectHMCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	CheckForInteractables();
+
+}
+
 //////////////////////////////////////////////////////////////////////////
 // Input
 
@@ -80,9 +90,29 @@ void AProjectHMCharacter::SetupPlayerInputComponent(class UInputComponent* Playe
 void AProjectHMCharacter::CheckForInteractables()
 {
 
+	FHitResult HitResult;
 
+	FVector StartTrace = FollowCamera->GetComponentLocation();
+	FVector EndTrace = (FollowCamera->GetForwardVector() * 300) + StartTrace;
 
+	FCollisionQueryParams QueryParams;
+	QueryParams.AddIgnoredActor(this);
 
+	AGameplayController* PController = Cast<AGameplayController>(GetController());
+
+	if (GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace,
+		ECC_Visibility, QueryParams) && PController)
+	{
+		// 상호작용 가능한 아이템인지 체크
+		if (AInteractable* Interactable = Cast<AInteractable>(HitResult.GetActor()))
+		{
+			PController->CurrentInteractable = Interactable;
+			return;
+		}
+	}
+
+	// 아무 것도 없었거나 상호작용한 아이템이 없는 경우 CurrentInteractable을 nullptr로 설정
+	PController->CurrentInteractable = nullptr;
 }
 
 void AProjectHMCharacter::OnResetVR()

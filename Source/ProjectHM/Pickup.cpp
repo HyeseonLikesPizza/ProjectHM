@@ -3,3 +3,11 @@
 
 #include "Pickup.h"
 
+APickup::APickup()
+{
+	PickupMesh = CreateDefaultSubobject<UStaticMeshComponent>("PickupMesh");
+
+	ItemID = FName("Please Enter an ID");
+
+	
+}
