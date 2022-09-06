@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "ProjectHM.h"
 #include "Interactable.h"
 #include "Pickup.generated.h"
 

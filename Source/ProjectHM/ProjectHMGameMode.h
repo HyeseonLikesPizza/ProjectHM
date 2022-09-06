@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "ProjectHM.h"
 #include "GameFramework/GameModeBase.h"
 #include "ProjectHMGameMode.generated.h"
 
@@ -13,6 +13,16 @@ class AProjectHMGameMode : public AGameModeBase
 
 public:
 	AProjectHMGameMode();
+
+	class UDataTable* GetItemDB() const { return ItemDB;}
+
+protected:
+
+	UPROPERTY(EditDefaultsOnly)
+	class UDataTable* ItemDB;
+
+
+
 };
 
 
