@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "ProjectHM.h"
 #include "GameFramework/Character.h"
 #include "Engine/DataTable.h"
 #include "ProjectHMCharacter.generated.h"
@@ -39,9 +39,9 @@ public:
 
 	FInventoryItem()
 	{
-		Name = FText::FromString("아이템");
+		Name = FText::FromString("Item Name");
 		Action = FText::FromString("Use");
-		Description = FText::FromString("아이템 설명");
+		Description = FText::FromString("Description");
 		Value = 10;
 	}
 	

@@ -27,6 +27,8 @@ void AGameplayController::AddItemToInventoryByID(FName ID)
 
 void AGameplayController::Interact()
 {
+	//UE_LOG(Warning, TEXT("Interact"));
+
 	if (CurrentInteractable)
 	{
 		CurrentInteractable->Interact(this);
