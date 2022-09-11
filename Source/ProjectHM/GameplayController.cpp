@@ -18,7 +18,7 @@ void AGameplayController::AddItemToInventoryByID(FName ID)
 
 	FInventoryItem* ItemToAdd = ItemTable->FindRow<FInventoryItem>(ID, "");
 
-	if (ItemToAdd)
+	if (ItemToAdd && (Inventory.Num() < 8))
 	{
 		Inventory.Add(*ItemToAdd);
 	}
