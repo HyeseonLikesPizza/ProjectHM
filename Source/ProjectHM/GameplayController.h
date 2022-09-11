@@ -17,6 +17,9 @@ class PROJECTHM_API AGameplayController : public APlayerController
 	
 public:
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void ReloadInventory();
+
 	UFUNCTION(BlueprintCallable, Category = "Utils")
 	void AddItemToInventoryByID(FName ID);
 
