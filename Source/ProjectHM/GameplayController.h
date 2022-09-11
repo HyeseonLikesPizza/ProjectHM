@@ -4,6 +4,7 @@
 
 #include "ProjectHM.h"
 #include "ProjectHMCharacter.h"
+#include "Interactable.h"
 #include "GameFramework/PlayerController.h"
 #include "GameplayController.generated.h"
 
@@ -19,6 +20,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void ReloadInventory();
+
+	UFUNCTION(BlueprintCallable, Category = "Utils")
+	void CraftItem(FInventoryItem ItemA, FInventoryItem ItemB, AGameplayController* Controller);
 
 	UFUNCTION(BlueprintCallable, Category = "Utils")
 	void AddItemToInventoryByID(FName ID);
