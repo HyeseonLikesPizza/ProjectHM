@@ -25,6 +25,9 @@ public:
 	void CraftItem(FInventoryItem ItemA, FInventoryItem ItemB, AGameplayController* Controller);
 
 	UFUNCTION(BlueprintCallable, Category = "Utils")
+	void ChangeInventoryPosition(FInventoryItem ToItem, FInventoryItem FromItem);
+
+	UFUNCTION(BlueprintCallable, Category = "Utils")
 	void AddItemToInventoryByID(FName ID);
 
 	// 플레이어가 현재 바라보고있는 상호작용 액터

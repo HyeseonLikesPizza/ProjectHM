@@ -72,6 +72,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bCanBeUsed;
 
+	int32 InventoryIndex;
+
 	bool operator==(const FInventoryItem& Item) const
 	{
 		if (ItemID == Item.ItemID)

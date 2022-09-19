@@ -33,6 +33,29 @@ void AGameplayController::CraftItem(FInventoryItem ItemA, FInventoryItem ItemB, 
 
 }
 
+void AGameplayController::ChangeInventoryPosition(FInventoryItem ToItem, FInventoryItem FromItem)
+{
+	int ToIdx = ToItem.InventoryIndex;
+	int FromIdx = FromItem.InventoryIndex;
+	FInventoryItem temp = ToItem;
+
+	for (int idx = 0; idx != Inventory.Num(); idx++)
+	{
+		if (ToIdx == idx)
+		{
+			Inventory[idx] = FromItem;
+			Inventory[idx].InventoryIndex = ToIdx;
+		}
+		else if (FromIdx == idx)
+		{
+			Inventory[idx] = temp;
+			Inventory[idx].InventoryIndex = FromIdx;
+		}
+	}
+
+	ReloadInventory();
+}
+
 void AGameplayController::AddItemToInventoryByID(FName ID)
 {
 	AProjectHMGameMode* GameMode = Cast<AProjectHMGameMode>(GetWorld()->GetAuthGameMode());
@@ -42,6 +65,7 @@ void AGameplayController::AddItemToInventoryByID(FName ID)
 
 	if (ItemToAdd )
 	{
+		ItemToAdd->InventoryIndex = Inventory.Num();
 		Inventory.Add(*ItemToAdd);
 		ReloadInventory();
 	}
