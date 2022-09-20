@@ -5,12 +5,13 @@
 #include "ProjectHM.h"
 #include "ProjectHMCharacter.h"
 #include "Interactable.h"
+#include "Components/ActorComponent.h"
 #include "GameFramework/PlayerController.h"
 #include "GameplayController.generated.h"
 
-/**
- * 
- */
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FLoadInventoryItems);
+
 UCLASS()
 class PROJECTHM_API AGameplayController : public APlayerController
 {
@@ -37,6 +38,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	TArray<FInventoryItem> Inventory;
+
+	UPROPERTY(BlueprintAssignable, Category = "Inventory")
+	FLoadInventoryItems OnInventoryUpdated;
 
 
 protected:
