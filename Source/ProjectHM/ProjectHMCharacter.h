@@ -75,6 +75,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 InventoryIndex;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanBeStacked;
+
 	bool operator==(const FInventoryItem& Item) const
 	{
 		if (ItemID == Item.ItemID)

@@ -10,7 +10,6 @@
 #include "GameplayController.generated.h"
 
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FLoadInventoryItems);
 
 UCLASS()
 class PROJECTHM_API AGameplayController : public APlayerController
@@ -29,6 +28,9 @@ public:
 	void ChangeInventoryPosition(FInventoryItem ToItem, FInventoryItem FromItem);
 
 	UFUNCTION(BlueprintCallable, Category = "Utils")
+	void DropItem(FInventoryItem Item);
+
+	UFUNCTION(BlueprintCallable, Category = "Utils")
 	void AddItemToInventoryByID(FName ID);
 
 	// 플레이어가 현재 바라보고있는 상호작용 액터
@@ -38,9 +40,6 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	TArray<FInventoryItem> Inventory;
-
-	UPROPERTY(BlueprintAssignable, Category = "Inventory")
-	FLoadInventoryItems OnInventoryUpdated;
 
 
 protected:

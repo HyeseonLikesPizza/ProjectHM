@@ -56,6 +56,13 @@ void AGameplayController::ChangeInventoryPosition(FInventoryItem ToItem, FInvent
 	ReloadInventory();
 }
 
+void AGameplayController::DropItem(FInventoryItem Item)
+{
+
+
+
+}
+
 void AGameplayController::AddItemToInventoryByID(FName ID)
 {
 	AProjectHMGameMode* GameMode = Cast<AProjectHMGameMode>(GetWorld()->GetAuthGameMode());
