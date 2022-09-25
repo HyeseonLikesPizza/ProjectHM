@@ -56,11 +56,16 @@ void AGameplayController::ChangeInventoryPosition(FInventoryItem ToItem, FInvent
 	ReloadInventory();
 }
 
-void AGameplayController::DropItem(FInventoryItem Item)
+void AGameplayController::DropItem(int SlotIndex)
 {
+	Inventory.RemoveAt(SlotIndex);
+	
+	for (int i = SlotIndex; i != Inventory.Num(); i++)
+	{
+		Inventory[i].InventoryIndex--;
+	}
 
-
-
+	ReloadInventory();
 }
 
 void AGameplayController::AddItemToInventoryByID(FName ID)

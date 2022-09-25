@@ -28,7 +28,7 @@ public:
 	void ChangeInventoryPosition(FInventoryItem ToItem, FInventoryItem FromItem);
 
 	UFUNCTION(BlueprintCallable, Category = "Utils")
-	void DropItem(FInventoryItem Item);
+	void DropItem(int SlotIndex);
 
 	UFUNCTION(BlueprintCallable, Category = "Utils")
 	void AddItemToInventoryByID(FName ID);
